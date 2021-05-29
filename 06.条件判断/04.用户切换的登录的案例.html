@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <span v-if="showMessage">
+            <label for="email">邮箱登录</label>
+            <input type="text" placeholder="请输入邮箱" id="email">
+        </span>
+        <span v-else>
+            <label for="userName">账号登录</label>
+            <input type="text" placeholder="请输入账号" id="userName">
+        </span>
+        <button @click="changeShow">切换登录方式</button>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                showMessage:true,
+            },
+            methods:{
+                changeShow(){
+                    this.showMessage = !this.showMessage;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

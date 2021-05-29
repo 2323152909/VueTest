@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 3.使用组件 -->
+       <my-cpn></my-cpn>
+       <my-cpn></my-cpn>
+       <my-cpn></my-cpn>
+       <my-cpn></my-cpn>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        // 1.创建Vue组件构造器对象：调用Vue.extend()创建
+        const cpnC = Vue.extend({
+            // template为模板的意思
+            // ES6的语法：“ ` ”为模板字符串的创建方式，其创建的字符串可以换行使用
+            template:`
+                <div>
+                    <h1>我是标题</h1>
+                    <p>我是内容，哈哈哈哈哈</p>
+                    <p>我是内容，曹操从凹槽擦</p>
+                </div>
+            `
+        })
+
+        // 2.注册组件：调用Vue.component()注册
+        Vue.component('my-cpn',cpnC)
+
+
+        const app = new Vue({
+            el:'#app',
+            data:{
+
+            }
+        })
+    </script>
+</body>
+</html>

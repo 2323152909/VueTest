@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 3.使用组件 -->
+       <my-cpn></my-cpn>
+       <my-cpn></my-cpn>
+    </div>
+
+    <!-- <div id="app2">
+        <my-cpn></my-cpn>
+    </div> -->
+    <script src="../js/vue.js"></script>
+    <script>
+        // 1.创建Vue组件构造器对象
+        const cpnC = Vue.extend({
+            template:`
+                <div>
+                    <h1>我是标题</h1>
+                    <p>我是内容，哈哈哈哈哈</p>
+                    <p>我是内容，曹操从凹槽擦</p>
+                </div>
+            `
+        })
+
+        // 2.注册组件（全局组件，意味着可以在多个Vue实例中使用）
+        // Vue.component('my-cpn',cpnC)
+
+        // 疑问：怎么注册才会产生局部组件呢？
+
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'你好啊'
+            },
+            // 注册组件的属性
+            components:{
+                // myCpn为我们想要使用的组件名,my-cpn的驼峰式命名法
+                myCpn: cpnC,
+            }
+        })
+
+        // const app2 = new Vue({
+        //     el:'#app2',
+        //     data:{}
+        // })
+    </script>
+</body>
+</html>

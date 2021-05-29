@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in letters">{{item}}</li>
+        </ul>
+        <button @click="btnclick">按钮</button>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                letters:['A','B','C','D','E'],
+            },
+            methods:{
+                btnclick(){
+                    // 1.push方法:向数组中最后添加元素，可以是多个
+                    // this.letters.push('lhd');
+
+                    // 2.pop方法：删除数组中最后一个元素
+                    // this.letters.pop();
+
+                    // 3.shift方法：删除数组中第一个元素
+                    // this.letters.shift();
+
+                    // 4.unshift方法：在数组最前面添加元素，可以是多个
+                    // this.letters.unshift('aaa','bbb','ccc');
+
+                    // 5.splice()方法：删除元素/插入元素/替换元素
+                    // splice(start)或者splice(start,num)
+                    // 删除元素：第二个参数传入要删除几个元素（如果没有传第二个参数，则删除后面全部的元素），第一个参数为从第几个元素的位置开始删除
+                    // splice(start,0,str...)
+                    // 插入元素：第二个参数为0，从第三个参数开始后面可以传任意多个参数，传几个就插入几个，第一个参数为从第几个元素的位置插入
+                    // splice(start,3,str,str,str)
+                    // 替换元素：第二个参数为要替换几个元素，后面的参数为要替换成的元素，个数与第二个参数的数值一样
+                    // splice(start)
+                    // splice(start,num,str)
+                    // this.letters.splice(1,0,'x','y','z');//在索引为一的位置开始插入三个元素
+
+                    // 6.sort()方法：使数组进行排序
+                    // this.letters.sort();
+
+                    // 7.reverse()方法：使数组反转
+                    // this.letters.reserve();
+
+
+                    // 注意：通过索引值修改数组(不能进行响应式操作)
+                    // this.letters[0]='lhd'//不行
+                    // this.letters.splice(0,1,'lhd')//可行
+                    // set(要修改的对象，索引，字符串)
+                    Vue.set(this.letters,0,'lhd');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

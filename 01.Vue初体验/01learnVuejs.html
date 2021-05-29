@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>hello {{message}}</h2>
+    </div>
+    <!-- 导入Vue的数据包 -->
+    <script src="../js/vue.js"></script>
+    <script>
+        // 此处可以使用let进行定义，也可以使用const进行定义，只不过const是定义一个常数
+        let app = new Vue({
+            //对象的值为元素也可以是标签，可以通过获取标签来进行绑定，document.quarySelectorAll();
+            el: "#app",
+            data:{
+                message : "vuejs", 
+            }
+        })
+    </script>
+</body>
+</html>

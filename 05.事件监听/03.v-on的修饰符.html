@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1{
+            background-color: #bfa;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 1. .stop的使用 -->
+        <div @click='divclick' id="div1">
+            <!-- 阻止时间冒泡，加上一个修饰符.stop -->
+            <button @click.stop='btnclick'>按钮</button>
+        </div>
+        <br/>
+        <!-- 2. .prevent的使用 -->
+        <form action="baidu">
+            <!-- 通过.prevent阻止默认提交事件 -->
+            <input type="submit" value="提交" @click.prevent='submitclick'>
+        </form>
+        <!-- 3. .监听某个键盘按键的点击 -->
+        <!-- keyup.enter会在按下回车键并抬起之后进行监听，如果是keydown.enter则会在按下回车键的时候就进行监听，
+            keydown.a则会在按下键盘上的字母a时进行事件的监听 -->
+        <input type="text" @keyup.enter='keyup'>
+
+        <!-- 4. .once的使用 -->
+        <!-- 当设置我们的.once之后，事件只能被调用一次，相当于按钮第一次按下会执行我们的监听事件，但是之后再按下的时候就不会进行事件的反应 -->
+        <button @click.once='onceclick'>按钮</button>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                event:'lhd'
+            },
+            methods:{
+                btnclick(){
+                    console.log("btnclick");
+                },
+                divclick(){
+                    console.log("divclick");
+                },
+                submitclick(){
+                    console.log('submitclick')
+                },
+                keyup(){
+                    console.log('keydown');
+                },
+                onceclick(){
+                    console.log('onceclick');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

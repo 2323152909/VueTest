@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <cpn></cpn>
+        <cpn></cpn>
+        <cpn></cpn>
+        <cpn2></cpn2>
+    </div>
+
+    <!-- 1.模板的分离写法:script标签，注意类型为：text/x-template -->
+    <!-- <script type="text/x-template" id="cpn">
+        <div>
+            <h1>我是标题</h1>
+            <p>我是内容，哈哈哈哈哈哈哈</p>
+        </div>
+    </script> -->
+
+    <!-- 2.template标签写法 -->
+    <template id="cpn">
+        <div >
+            <h1>{{title}}</h1>
+            <p>{{body}}</p>
+        </div>
+    </template>
+    <template id="cpn2">
+        <div>
+            <h1>{{title2}}</h1>
+            <p>我是另一个组件的内容，嘿嘿</p>
+        </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        // 1.注册一个全局组件
+        Vue.component('cpn',{
+            template:'#cpn',
+            // 组件中的data必须是一个函数，函数必须返回一个实例对象
+            data(){
+                return {
+                    title:'lhd',
+                    body:'我是内容，嘿嘿嘿，我就是皮彩艳'
+                }
+            },   
+        })
+
+        Vue.component('cpn2',{
+            template:'#cpn2',
+            data(){
+                return {
+                    title2:'我是另一个组件的标题'
+                }
+            }
+        })
+
+        const app = new Vue({
+            el:'#app',
+            data:{
+                title:'我是标题'
+            },
+            components:{
+                cpn2:{
+                    template:'#cpn2',
+                    // 组件中的数据data必须是一个函数，其返回值为对象
+                    data(){
+                        return {
+                            title2:'我是在vue实例中的标题'
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- HTML不支持驼峰命名规则，当从JavaScript中需要动态绑定的值为驼峰命名法传入的值时，在HTML中需要用-来代替驼峰命名 -->
+        <cpn :arg="info" :child-message="message"></cpn>
+    </div>
+
+    <template id="cpn">
+        <!-- 当模板中存在多条语句是，他们必须有一个确切的根组件，意味着必须将所有语句包含在同一个语句之中，一般将其全部放入div模块中 -->
+        <div>
+            <h2>{{arg}}</h2>
+            <h2>{{childMessage}}</h2>
+        </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const cpn = {
+            template:"#cpn",
+            data(){
+                return {}
+            },
+            props:{
+                arg:{
+                    type:Object,
+                    // 对象和数组的默认值为一个方法返回一个对象或者数组
+                    default(){
+                        return {}
+                    }
+                },
+                childMessage:{
+                    type:String,
+                    default:''
+                }
+            }
+        }
+
+
+        const app = new Vue({
+            el:'#app',
+            data:{
+                info:{
+                    name:'lhd',
+                    age:18,
+                    height:1.80
+                },
+                message:'你好啊'
+            },
+            methods:{},
+            components:{
+                cpn,
+            }
+        })
+    </script>
+</body>
+</html>

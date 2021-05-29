@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 1.选择一个 -->
+        <select name="sports" v-model="sport">
+            <option value="篮球">篮球</option>
+            <option value="足球">足球</option>
+            <option value="羽毛球">羽毛球</option>
+            <option value="乒乓球">乒乓球</option>
+            <option value="网球">网球</option>
+        </select>
+        <h1>你选择的运动是:{{sport}}</h1>
+
+        <!-- 2.选择多个 -->
+        <!-- select标签中添加multiple可以选择多个 -->
+        <select name="sports" v-model="sports" multiple>
+            <option value="篮球">篮球</option>
+            <option value="足球">足球</option>
+            <option value="羽毛球">羽毛球</option>
+            <option value="乒乓球">乒乓球</option>
+            <option value="网球">网球</option>
+        </select>
+        <h1>你选择的运动是:{{sports}}</h1>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                sport:'足球',
+                sports:[]
+            },
+            methods:{
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <cpn></cpn>
+        <cpn>
+            <!-- 目的是获取子组件中的PLanguages赋值给v-slot后的对象，然后通过对象.属性的形式进行获取数据 -->
+            <!-- 通过v-slot:name=" "的方式，name绑定具名插槽，将插槽中的属性赋给=号后面的对象 -->
+            <template v-slot:s1="slot">
+                <!-- <span v-for="item in slot.data">{{item}}-</span> -->
+                <!-- 通过join方法，将数组转化成字符串，用空号中的参数进行分割 -->
+                <span>{{slot.data.join("-")}}</span>
+            </template>
+        </cpn>
+        <cpn>
+            <!-- 目的是获取子组件中的PLanguages赋值给v-slot后的对象，然后通过对象.属性的形式进行获取数据 -->
+            <template v-slot:s2="slot">
+                <!-- <span v-for="item in slot.data">{{item}}-</span> -->
+                <!-- 通过join方法，将数组转化成字符串，用空号中的参数进行分割 -->
+                <span>{{slot.abc.join("*")}}</span>
+            </template>
+        </cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <slot :data="PLanguages" name="s1">
+                <ul>
+                    <li v-for="item in PLanguages">{{item}}</li>
+                </ul>
+            </slot>
+            <slot :abc="PLanguages" name="s2">
+                <ul>
+                    <li v-for="item in PLanguages">{{item}}</li>
+                </ul>
+            </slot>
+        </div>
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'你好呀',
+            },
+            components:{
+                cpn:{
+                    template:'#cpn',
+                    data() {
+                        return {
+                            PLanguages:['JavaScript','Java','C++','Python','C#','GO','swift']
+                        }
+                    },
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 简单来说v-bind的使用其实就是将原本的一些属性进行动态绑定，让我们可以在Vue中进行动态调用里面的数据 -->
+        <img v-bind:src="imgUrl" alt="">
+        <a v-bind:href="aHref">百度一下</a>
+        <!-- 语法糖的写法 -->
+        <img :src="imgUrl" alt="">
+        <a :href="aHref">百度一下</a>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                imgUrl:"https://himg.bdimg.com/sys/portraitn/item/wenku.1.73b5ca85.j2qeD8osMcKK_KHAoZGPOQ.jpg",
+                aHref:"http://www.baidu.com"
+            }
+        })
+    </script>
+</body>
+</html>

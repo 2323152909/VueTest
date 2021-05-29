@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性的基本使用</title>
+</head>
+<body>
+    <div id="app">
+        <h1>书本的总价格：{{books[0].price+books[1].price+books[2].price+books[3].price}}</h1>
+        <h1>书本的总价格：{{totalPrice}}</h1>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                books:[
+                    {id:1,name:'中华字典',price:115},
+                    {id:2,name:'大国崛起',price:109},
+                    {id:3,name:'java从入门到精通',price:88},
+                    {id:4,name:'阴阳师',price:250},
+                ]
+            },
+            // 计算属性computed
+            computed:{
+                totalPrice:function(){
+                    let result=0;
+                    for(let i=0;i<this.books.length;i++){
+                        result += this.books[i].price;
+                    }
+                    /*ES6语法*/
+                    // for(let i in this.books){
+                    //     result += this.books[i].price;
+                    // }
+                    /*ES6语法*/
+                    // for(let book of this.books){
+                    //     result += book.price;
+                    // }
+                    return result;
+                }
+            },
+        })
+    </script>
+</body>
+</html>

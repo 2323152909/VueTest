@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-if ：条件为false时，包含v-if的元素不会出现在dom中 -->
+        <h1 v-if="isShow" id="aaa">{{message}}</h1>
+        <!-- v-show ：条件为false时，包含v-show的元素只会在内联样式中添加一个display属性，属性值为none，但是依然存在于我们的dom中 -->
+        <h1 v-show="isShow" id="bbb">{{message}}</h1>
+        <button @click="showMessage">切换</button>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'你好啊',
+                isShow:true
+            },
+            methods:{
+                showMessage(){
+                    this.isShow = !this.isShow;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

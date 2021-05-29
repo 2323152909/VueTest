@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 想要实现组件的父传子，必须使用动态绑定回去到父组件的属性值，然后动态绑定给子组件的对应属性 -->
+        <cpn :cmovies="movies" :cmessage="message"></cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <ul>
+                <li v-for="cm in cmovies">{{cm}}</li>
+            </ul>
+            <!-- <h1 v-for="cm in cmovies">{{cm}}</h1> -->
+            <h2>{{cmessage}}</h2>
+        </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        // 创建一个组件对象
+        const cpn ={
+            template:'#cpn',
+            data(){
+                return {}
+            },
+            methods:{},
+            // 通过该属性进行父组件对子组件的数据传递
+            // props:['cmovies','cmessage']
+            props:{
+                // 1.类型限制写法
+                // cmovies:Array,
+                // cmessage:String,
+
+                // 2.提供一些默认值，以及必传值
+                cmessage:{
+                    type:String,
+                    default:"lhdzbifecs",
+                    // 当required属性为true时，则在使用该组件时，必须传入cmessage属性，否则就会报错
+                    required:true
+                },
+                // 类型是对象或者数组时，默认值必须是一个函数
+                cmovies:{
+                    type:Array,
+                    default:function(){
+                        return [];
+                    },
+                    required:false
+                }
+            }
+        }
+
+        const app = new Vue({
+            el:'#app',
+            data:{
+                movies:['斗罗大陆','名侦探柯南','火影忍者','海贼王'],
+                message:'你好呀'
+            },
+            components:{
+                cpn
+            }
+        })
+    </script>
+</body>
+</html>

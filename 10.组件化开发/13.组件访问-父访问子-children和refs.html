@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <cpn></cpn>
+        <cpn></cpn>
+        <!-- 通过添加ref='lhd'，可以将子组件存放入对象作为数据存入lhd对象中 -->
+        <cpn ref="lhd"></cpn>
+        <button @click="btnclick">按钮</button>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <h2>我是子组件</h2>
+        </div>
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'你好呀'
+            },
+            methods:{
+                btnclick(){
+                    // 1.$children访问子组件
+                    // console.log(this.$children)
+                    // for(let c of this.$children){
+                    //     console.log(c.name)
+                    //     c.showMessage
+                    // }
+                    
+                    // 2.$refs=>对象类型，默认是一个空的对象，reference的缩写,必须在使用组件是加:ref='lhd',则可以向lhd对象中添加属性
+                    console.log(this.$refs.lhd)
+                }
+            },
+            components:{
+                cpn:{
+                    template:"#cpn",
+                    props:{
+                        
+                    },
+                    data(){
+                        return {
+                            name:'我是子组件的name'
+                        }
+                    },
+                    methods:{
+                        showMessage(){
+                            console.log('showMessage')
+                        }
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-model为双向绑定，页面可以读取后台的属性值，同时，当页面的值更改后，会将改属性值传回后台将后台该属性值进行更改 -->
+        <input type="text" name="" id="" v-model="message">
+        {{message}}
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'你好',
+            }
+        })
+    </script>
+</body>
+</html>

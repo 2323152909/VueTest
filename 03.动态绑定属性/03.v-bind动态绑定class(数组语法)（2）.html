@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind动态绑定class的数组语法</title>
+    <style>
+        .active{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1 class="tittle" v-bind:class="[active,line]">你好啊！</h1>
+        <h1 :class="getClasses()">你好啊！</h1>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                active:"aaaaa",
+                line:"bbbbbbb"
+            },
+            methods:{
+                getClasses:function(){
+                    return [this.active,this.line];
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

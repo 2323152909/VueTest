@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .color{
+            color:red;
+        }
+        .size{
+            font-size: 20px;
+        }
+        li{
+            display: inline-flexbox;
+            background-color: aquamarine;
+            background-clip: content-box;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li :class='{color:currentIndex==index,size:isSize==index}' v-for="(m,index) in movies" @mouseover="mouseoverli(index)">
+                {{index}},{{m}}
+            </li>
+        </ul>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                movies:['海贼王','火影忍受','斗罗大陆','名侦探柯南'],
+                currentIndex:0,
+                isSize:3
+            },
+            methods:{
+                mouseoverli(index){
+                    this.currentIndex=index;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

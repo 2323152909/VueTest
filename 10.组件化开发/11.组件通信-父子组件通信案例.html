@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Vue实力对象模块 -->
+    <div id="app">
+        <cpn :number1="num1"
+             :number2="num2"
+             @changevalue1="cpn1value" 
+             @changevalue2="cpn2value">
+        </cpn>
+    </div>
+        
+
+    <!-- 组件模块 -->
+    <template id="cpn">
+        <div>
+            <h1>props:{{number1}}</h1>
+            <h1>data:{{dnumber1}}</h1>
+            <input type="text" :value="dnumber1" @input="num1input">
+            <h1>props:{{number2}}</h1>
+            <h1>data:{{dnumber2}}</h1>
+            <input type="text" :value="dnumber2" @input="num2input">
+        </div>
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+
+        const app = new Vue({
+            el:'#app',
+            data:{
+                num1:1,
+                num2:100
+            },
+            methods:{
+                cpn1value(value){
+                    // 将num的值修改，将传过来的参数转化为浮点数
+                    this.num1 = parseFloat(value)
+                },
+                cpn2value(value){
+                    this.num2 = parseFloat(value)
+                }
+            },
+            components:{
+                cpn:{
+                    template:'#cpn',
+                    props:{
+                        number1:Number,
+                        number2:Number
+                    },
+                    data(){
+                        return {
+                            dnumber1:this.number1,
+                            dnumber2:this.number2,
+                        }
+                    },
+                    methods:{
+                        num1input(event){
+                            // 将input中的值赋值给dnumber1
+                            this.dnumber1 = event.target.value;
+                            // 将dnumber1的值乘以一百倍赋值给dnumber2
+                            this.dnumber2 = this.dnumber1*100
+                            // 发射一个命令，创建一个事件为changevalue1，将dnumber1的值作为参数传过去
+                            this.$emit('changevalue1',this.dnumber1)
+                            // 发射一个命令，创建一个事件为changevalue2，将dnumber2的值作为参数传过去
+                            this.$emit('changevalue2',this.dnumber2)
+                        },
+                        num2input(event){
+                            // 将input中的值赋值给dnumber2
+                            this.dnumber2 = event.target.value;
+                            // 将dnumber2的值除以一百倍赋值给dnumber1
+                            this.dnumber1 = this.dnumber2/100
+                            // 发射一个命令，创建一个事件为changevalue2，将dnumber2的值作为参数传过去
+                            this.$emit('changevalue2',this.dnumber2)
+                            // 发射一个命令，创建一个事件为changevalue1，将dnumber1的值作为参数传过去
+                            this.$emit('changevalue1',this.dnumber1)
+                        },
+                        
+                    }
+                },
+                
+            }
+        })
+    </script>
+</body>
+</html>

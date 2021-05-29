@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 给数组绑定一个key之后，每次在数组中插入一个元素的时候，不会导致插入位置之后的那些元素的原索引发生改变，寻找的方法不同 -->
+        <ul>
+            <li v-for="(item,index) in letters" :key='item'>{{index}},{{item}}</li>
+        </ul>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                letters:['A','B','C','D','E'],
+            }
+        })
+    </script>
+</body>
+</html>

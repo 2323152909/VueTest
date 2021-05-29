@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性的基本使用</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 通过写两个mustache进行输出 -->
+        <h1>{{firstName}},{{lastName}}</h1>
+        <!-- 直接在mustache中进行相加获得的结果 -->
+        <h1>{{firstName + ' '+ lastName}}</h1>
+        <!-- 使用函数的形式进行计算获取到的结果 -->
+        <h1>{{getFullName()}}</h1>
+        <!-- 使用计算属性computed进行计算返回的 -->
+        <h1>{{fullName}}</h1>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                firstName:'Stephen',
+                lastName:'Curry',
+            },
+            computed:{
+                fullName:function(){
+                    return this.firstName + ' ' + this.lastName;
+                }
+            },
+            methods:{
+                getFullName(){
+                    return this.firstName + ' ' + this.lastName;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

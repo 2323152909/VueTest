@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 想要更改某个插槽的东西，就写入slot='name'来确定替换哪一个插槽-->
+        <cpn>
+            <span slot="center">标题</span>
+        </cpn>
+        <cpn>
+            <button slot="left">返回</button>
+        </cpn>
+        <cpn>
+            <span>我没加slot="name"，我会替换插槽中没有name的标签</span>
+        </cpn>
+    </div>
+
+    <!-- 编写组件模板 -->
+    <template id="cpn">
+        <div>
+            <!-- 具名插槽是在slot标签中加入name，在使用时需要替换哪个插槽就引用哪个 -->
+            <slot name="left">
+                <span>左边</span>
+            </slot>
+            <slot name="center">
+                <span>中间</span>
+            </slot>
+            <slot name="right">
+                <span>右边</span>
+            </slot>
+            <slot>
+                <span>我没有name</span>
+            </slot>
+        </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'你好呀',
+            },
+            components:{
+                cpn:{
+                    template:'#cpn',
+                    props:{},
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <cpn></cpn>
+        <cpn></cpn>
+        <cpn></cpn>
+    </div>
+    <!-- 创建组件 -->
+    <template id="cpn">
+        <div>
+            <h1>当前数量为：{{count}}</h1>
+            <button @click="add">+</button>
+            <button @click="sub">-</button>
+        </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        // 注册组件
+        Vue.component("cpn",{
+            template:'#cpn',
+            /* 此处使用函数的形式创建data，是因为当组件多次被调用的时候要保证其使用的不是同一个对象，
+             *当其中一个组件对象被更改之后，不会影响到其他组件的值
+             */
+            data(){
+                return {
+                    count:0,
+                }
+            },
+            methods:{
+                add(){
+                    this.count++;
+                },
+                sub(){
+                    this.count--;
+                }
+            }
+        })
+
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'你好啊'
+            }
+        })
+    </script>
+    <script>
+        /*
+         * 通过下面的方式对组件中的data为何必须是函数的原因作出相应的解释，
+         *为了保证每次组件被调用之后，
+         *当其中一个组件对象被改变之后不会影响到其他组件对象，
+         *于是就需要每次获取到的对象不是同一个对象，
+         *所以data必须以函数的形式进行对象的创建，
+         *就是为了保证每次使用的组件对象不相同，
+         *这是组建的复用性
+         */
+        /*当以函数的方式创建对象时，每次调用该方法时都会产生一个新的对象，所以每次使用的对象都不相同*/
+        // function obj(){
+        //     return {
+        //         name:'lhd',
+        //         age:'18'
+        //     }
+        // }
+
+        // let obj1 = obj();
+        // let obj2 = obj();
+        // let obj3 = obj();
+
+        // obj1.name = 'pcy';
+
+        // console.log(obj1);
+        // console.log(obj2);
+        // console.log(obj3);
+
+        /* 当以对象的形式创建时，每次调用函数返回的对象为同一个，
+         *返回实际为该对象的地址，所以每次创建的对象都为同一个，当一个对象更改时，所有对象都会发生改变
+         */
+        // let obj = {
+        //     name:'lhd',
+        //     age:18,
+        // };
+
+        // function fun(){
+        //     return obj;
+        // }
+
+        // let obj1 = fun();
+        // let obj2 = fun();
+        // let obj3 = fun();
+
+        // obj1.name = 'pcy';
+
+        // console.log(obj1);
+        // console.log(obj2);
+        // console.log(obj3);
+
+    </script>
+</body>
+</html>

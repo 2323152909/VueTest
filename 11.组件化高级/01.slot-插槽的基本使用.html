@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 引用组件时没有写插槽，则使用默认值 -->
+        <cpn></cpn>
+        <!-- 引用组件时自己写了插槽，则会覆盖默认值 -->
+        <cpn><span>哈哈哈</span></cpn>
+        <cpn><i>呵呵呵</i></cpn>
+        <!-- 在引用组件时，插槽中可插入多个标签 -->
+        <cpn>
+            <i>呵呵呵</i>
+            <div>我是div标签</div>
+            <p>我是P标签</p>
+        </cpn>
+        <!-- 如果编写组件模板时没有写slot标签，则在引用标签时加标签是没用的 -->
+        <cpn></cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <h2>我是组件</h2>
+            <p>我是内容，哈哈哈</p>
+            <!-- 封装插槽 -->
+            <slot>
+                <!-- slot插槽中的标签为默认值 -->
+                <button>按钮</button>
+            </slot>
+            <!-- <button>按钮</button> -->
+        </div>
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'你好呀',
+            },
+            components:{
+                cpn:{
+                    template:'#cpn',
+                    props:{},
+                }
+            }
+        })
+    </script>
+</body>
+</html>

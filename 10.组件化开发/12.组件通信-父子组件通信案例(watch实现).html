@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Vue实力对象模块 -->
+    <div id="app">
+        <cpn :number1="num1"
+             :number2="num2" 
+             @changevalue1="cpn1value" 
+             @changevalue2="cpn2value">
+        </cpn>
+    </div>
+        
+
+    <!-- 组件模块 -->
+    <template id="cpn">
+        <div>
+            <h1>props:{{number1}}</h1>
+            <h1>data:{{dnumber1}}</h1>
+            <input type="text" v-model="dnumber1">
+            <h1>props:{{number2}}</h1>
+            <h1>data:{{dnumber2}}</h1>
+            <input type="text" v-model="dnumber2">
+        </div>
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+
+        const app = new Vue({
+            el:'#app',
+            data:{
+                num1:1,
+                num2:100,
+            },
+            methods:{
+                cpn1value(value){
+                    // 将num的值修改，将传过来的参数转化为浮点数
+                    this.num1 = parseFloat(value)
+                },
+                cpn2value(value){
+                    this.num2 = parseFloat(value)
+                }
+            },
+            components:{
+                cpn:{
+                    template:'#cpn',
+                    props:{
+                        number1:Number,
+                        number2:Number
+                    },
+                    data(){
+                        return {
+                            dnumber1:this.number1,
+                            dnumber2:this.number2,
+                        }
+                    },
+                    watch:{
+                        // 通过watch属性，可以监听props属性中的对象，当期对象发生改变时，调用该方法
+                        dnumber1(newValue){
+                            this.dnumber1 = newValue
+                            this.dnumber2 = newValue*100
+                            this.$emit('changevalue1',newValue)
+                        },
+                        dnumber2(newValue){
+                            this.dnumber2 = newValue
+                            this.dnumber1 = newValue/100
+                            this.$emit('changevalue2',newValue)
+                        },
+                    }
+                        
+                }
+            },
+                
+        })
+    </script>
+</body>
+</html>

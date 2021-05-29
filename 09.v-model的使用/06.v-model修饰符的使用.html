@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 1.修饰符：lazy -->
+        <!-- 当在v-model后加入.lazy修饰符时，输入框更改数据时不会对后台数据同步更新，而是当用户点击enter或者输入框失去焦点时，才会更新后台数据 -->
+        <input type="text" v-model.lazy="message">
+        <h2>输入的信息为：{{message}}</h2>
+
+        <!-- 2.修饰符：number -->
+        <!-- 当在v-model后面加入.number修饰符时，会将v-model穿回的值改为number类型的，改掉原本默认的string类型为number类型 -->
+        <!-- v-model会默认将绑定的数据类型作为string类型的 -->
+        <input type="number" v-model.number="age">
+        <h2>输入的数字为：{{age}},类型为：{{typeof(age)}}</h2>
+
+        <!-- 3.修饰符：trim -->
+        <!-- 当在v-model后面加入.trim修饰符时，他会将输入框中输入的值的首位空格去掉，保留新的值 -->
+        <input type="text" v-model.trim="trimMessage">
+        <h2>输入的信息为：{{trimMessage}}</h2>
+        
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'lazy修饰符',
+                age:0,
+                trimMessage:'trim修饰符'
+            },
+            methods:{
+            }
+        })
+    </script>
+</body>
+</html>

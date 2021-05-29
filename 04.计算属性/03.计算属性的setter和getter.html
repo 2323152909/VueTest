@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性的基本使用</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 使用计算属性computed进行计算返回的 -->
+        <h1>{{fullName}}</h1>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                firstName:'Stephen',
+                lastName:'Curry',
+            },
+            // 计算属性computed
+            computed:{
+                // fullName:function(){
+                //     return this.firstName + ' ' + this.lastName;
+                // }
+                /*
+                    对于计算属性来说，函数一班是对象模式的，拥有两个方法，一个setter()方法和一个getter()方法，但是在computed计算函数中
+                    一班没有set()方法，所以函数一般简写为：
+                        fullName:function(){
+                            <函数体>
+                        }
+                */
+
+                fullName:{
+                    set:function(nameC){
+                        const name = nameC.split(" ");
+                        this.firstName = name[0];
+                        this.lastName = name[1];
+                    },
+                    get:function(){
+                        return this.firstName + ' ' + this.lastName;
+                    }
+                }
+
+                //computed函数一般为如下方式，因为一班没有set()方法，因此简写为最上面的形式
+                // fullName:{
+                //     get:function(){
+                //         return this.firstName + ' ' + this.lastName;
+                //     }
+                // }
+                
+            },
+            
+        })
+    </script>
+</body>
+</html>

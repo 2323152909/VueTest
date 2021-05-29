@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div v-if="books.length">
+            <table class="tb">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>书籍名称</th>
+                        <th>出版日期</th>
+                        <th>价格</th>
+                        <th>购买数量</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item,index) in books">
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.date}}</td>
+                        <td>{{item.price | showPrice}}</td>
+                        <td>
+                            <button @click="increment(index)">+</button>
+                            {{item.number}}
+                            <button @click='decrement(index)' :disabled="item.number <= 1">-</button>
+                        </td>
+                        <td>
+                            <button @click='btnclick(index)'>移除</button>
+                        </td>
+                    </tr>
+                    <!-- <tr v-for="(item,index) in books" class="tr">
+                        <td v-for="b in item">
+                            {{b}}
+                        </td>
+                        <td :key='item.name'>
+                            <button @click="addclick(index)">+</button>
+                            {{number[index]}}
+                            <button @click="subclick(index)">-</button>
+                        </td>
+                        <td ><button @click="btnclick(index)">移除</button></td>
+                    </tr> -->
+                </tbody>
+            </table>
+            <!-- 调用计算属性的时候，不能在方法名后面加括号 -->
+            <h3>总价格为：{{priceTotal | showPrice}}</h3>
+        </div>
+        <div v-else>
+            <h1>购物车为空！</h1>
+        </div>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

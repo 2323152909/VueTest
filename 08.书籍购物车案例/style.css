@@ -1,0 +1,20 @@
+#app{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+.tb{
+    border: 3px solid black;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+th td{
+    padding: 8px 16px;
+    border: 1px solid black;
+    text-align: left;
+}
+th{
+    background-color: bisque;
+    color: cadetblue;
+    font-weight: 600;
+}

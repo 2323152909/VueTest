@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- label标签中的for为绑定给哪个输入框，填入该输入框的id -->
+        <label for="male">
+            <!-- 想要两个复选按钮互斥，则给他们加入相同的name -->
+            <!-- input的radio类型为多选按钮 -->
+            <!-- 当用双向绑定v-model绑定同一个属性时，输入框会自动互斥，这时就可以不加name了 -->
+            <input type="radio" name="sex" id="male" value="男" v-model="sex">男
+        </label>
+        <label for="female">
+            <input type="radio" name="sex" id="female" value="女" v-model="sex">女
+        </label>
+        <h1>你选择的是：{{sex}}</h1>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'你好',
+                // 双向绑定，默认选择
+                sex:'男'
+            },
+            methods:{
+                changeValue(event){
+                    this.message = event.target.value;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

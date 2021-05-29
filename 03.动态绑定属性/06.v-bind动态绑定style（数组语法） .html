@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind动态绑定style的数组语法</title>
+    <style>
+        .color{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1 :style="[setColor,setSize]">{{message}}</h1>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'你好呀！',
+                setColor:{color:'red'},
+                setSize:{fontSize:'50px'},
+            },
+            methods:{
+                
+            }
+        })
+    </script>
+</body>
+</html>

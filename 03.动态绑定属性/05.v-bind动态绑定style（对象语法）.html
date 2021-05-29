@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind动态绑定style的对象语法</title>
+    <style>
+        .color{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1 :style="getStyle()">{{message}}</h1>
+        <ul>
+            <li v-bind:style="getStyle()" v-for="(m,index) in movies">{{m}}</li>
+        </ul>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                movies:['海贼王','火影忍受','斗罗大陆','名侦探柯南'],
+                message:'你好呀！',
+                setColor:"blue",
+                setSize:"50px",
+            },
+            methods:{
+                getStyle:function(){
+                    return {color:this.setColor,fontSize:this.setSize};
+                },
+            }
+        })
+    </script>
+</body>
+</html>
